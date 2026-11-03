@@ -1,0 +1,736 @@
+<!doctype html>
+<html lang="sk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Hemp Brothers HUB Bratislava</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Hemp Brothers HUB – pripravovaný showroom a predajňa konopných značiek v OC Relaxx na Einsteinovej 9 v Bratislave.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Montserrat:wght@300;700&family=Inter:wght@300;400;600;800&family=Syne:wght@400;600;800&display=swap">
+<script>
+/* Triedy pre JS vylepšenia. Bez JS stránka funguje bez intra, s plnou bielou hlavičkou. */
+(function () {
+  var d = document.documentElement;
+  d.classList.add("js");
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduce) return;
+  d.classList.add("motion");
+  // Intro pri každom načítaní aj po F5; na #kotvu sa skočí až po ňom
+  d.classList.add("intro");
+  // Po F5 začni hore, aby intro odkrylo hero a nie stred stránky
+  if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+  window.scrollTo(0, 0);
+})();
+</script>
+<style>
+/* Layout: biela stránka, šalviová zelená ako hlavná farba, terakota len na drobné akcenty.
+   Rozloženie obrázkov podľa vkozi.com: hero cez celú obrazovku, obrázok vedľa textu, mozaika s rôznymi veľkosťami. */
+:root {
+  color-scheme: light;
+  --white: #ffffff;
+  --paper: #f5f6f2;      /* veľmi svetlá šalviová plocha */
+  --sage: #6b7863;       /* z loga */
+  --sage-dark: #4d5847;
+  --sage-line: #d9ddd3;
+  --ink: #2a2f27;        /* text, zelenkavo sivá namiesto čiernej */
+  --muted: #5f6659;
+  --terra: #cf654b;      /* z loga, len akcent */
+  --terra-dark: #b4523a;
+
+  --font: "Mulish", "Helvetica Neue", Arial, sans-serif;   /* ako e-shop cbdbratislava.eu */
+  --font-logo: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+  --w: 1120px;
+  --gut: clamp(20px, 4vw, 64px);
+  --ease: cubic-bezier(.7, 0, .2, 1);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  margin: 0;
+  background: var(--white);
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: 16px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px solid var(--terra); outline-offset: 3px; }
+
+.wrap {
+  max-width: var(--w);
+  margin: 0 auto;
+  padding-left: max(20px, env(safe-area-inset-left, 0px));
+  padding-right: max(20px, env(safe-area-inset-right, 0px));
+}
+.skip { position: absolute; left: -9999px; }
+.skip:focus { left: 16px; top: 16px; background: var(--white); padding: 8px 12px; z-index: 50; }
+
+h1, h2, h3 { font-weight: 600; line-height: 1.2; margin: 0; text-wrap: balance; letter-spacing: -0.01em; }
+h1 { font-size: clamp(2.1rem, 5.4vw, 4.25rem); font-weight: 600; line-height: 1.08; }
+h2 { font-size: clamp(1.6rem, 3vw, 2.25rem); }
+h3 { font-size: 1.2rem; }
+p { margin: 0; max-width: 62ch; }
+.label {
+  font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--sage);
+}
+
+/* Wordmark presne ako v logu: HEMP tučne, BROTHERS tenko */
+.wordmark { font-family: var(--font-logo); font-size: 1.05rem; letter-spacing: 0.08em; color: var(--sage); text-decoration: none; display: flex; align-items: center; gap: 10px; white-space: nowrap; }
+.wordmark b { font-weight: 700; }
+.wordmark span { font-weight: 300; }
+.wordmark img { width: 44px; height: auto; border-radius: 2px; }
+.wm-icon { display: flex; flex-direction: column; align-items: center; gap: 2px; margin-right: 2px; }
+.wm-icon small { font-size: 0.5rem; font-weight: 600; letter-spacing: 0.4em; padding-left: 0.4em; color: var(--terra); line-height: 1; }
+.wordmark .wm-hub { font-weight: 600; font-size: 0.82em; letter-spacing: 0.22em; color: var(--terra); border-left: 1px solid currentColor; padding-left: 10px; line-height: 1; }
+footer.site .wordmark .wm-hub { color: #f3c2b5; }
+
+/* Header: bez JS plný biely a sticky. S JS leží priehľadne nad hero a po zrolovaní zbelie. */
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--white); transition: background .3s; }
+header.site {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20;
+  background: var(--white); border-bottom: 1px solid var(--sage-line);
+  transition: background .3s, border-color .3s, color .3s;
+}
+header.site .wrap { display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 68px; max-width: none; padding-left: max(var(--gut), env(safe-area-inset-left, 0px)); padding-right: max(var(--gut), env(safe-area-inset-right, 0px)); }
+nav.main { display: flex; align-items: center; gap: 28px; font-size: 0.9rem; font-weight: 500; }
+nav.main a { text-decoration: none; color: var(--ink); transition: color .2s; }
+nav.main a:hover { color: var(--sage); }
+nav.main a.shop { color: var(--terra-dark); }
+nav.main a.shop:hover { color: var(--terra); }
+nav.main a { white-space: nowrap; }
+@media (max-width: 860px) {
+  nav.main .sec { display: none; }
+}
+/* Mobil: len ikonka loga s HUB a tlačidlo s rozbaľovacím menu */
+.menu-toggle { display: none; }
+@media (max-width: 860px) {
+  header.site .wrap { min-height: 64px; }
+  /* HEMP BROTHERS v jednom riadku vedľa ikonky, HUB je pod ikonkou */
+  header.site .wordmark { font-size: clamp(0.88rem, 4.2vw, 1.02rem); gap: 8px; }
+  header.site .wordmark .wm-icon { margin-right: 4px; }
+  header.site .wordmark .wm-hub { display: none; }
+  .js .menu-toggle {
+    display: grid; place-content: center; gap: 5px; width: 46px; height: 46px; padding: 0;
+    background: var(--white); border: 1px solid var(--sage-line); border-radius: 2px; cursor: pointer;
+  }
+  .menu-toggle span { display: block; width: 20px; height: 1.5px; background: var(--sage-dark); transition: transform .3s var(--ease), opacity .2s; }
+  .menu-open .menu-toggle span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+  .menu-open .menu-toggle span:nth-child(2) { opacity: 0; }
+  .menu-open .menu-toggle span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+  .js nav.main {
+    position: absolute; top: 100%; left: 0; right: 0; z-index: 19;
+    display: flex; flex-direction: column; align-items: stretch; gap: 0;
+    padding: 4px max(20px, env(safe-area-inset-right, 0px)) 12px max(20px, env(safe-area-inset-left, 0px));
+    background: var(--white); border-bottom: 1px solid var(--sage-line);
+    font-size: 1.05rem; visibility: hidden; opacity: 0; transform: translateY(-8px);
+    transition: opacity .25s, transform .3s var(--ease), visibility 0s .3s;
+  }
+  .menu-open nav.main { visibility: visible; opacity: 1; transform: none; transition: opacity .25s, transform .3s var(--ease); }
+  .js nav.main a, .js nav.main .sec { display: flex; align-items: center; min-height: 52px; border-bottom: 1px solid var(--sage-line); }
+  .js nav.main a:last-child { border-bottom: 0; }
+  html.menu-open, .menu-open body { overflow: hidden; }
+}
+
+/* Tlačidlá: hranaté, plné alebo podčiarknutý text. Žiadne pilulky. */
+.btn {
+  display: inline-block; text-decoration: none; font-weight: 600; font-size: 0.95rem;
+  padding: 14px 22px; border-radius: 2px; background: var(--sage); color: var(--white);
+  border: 1px solid var(--sage); transition: background .15s;
+}
+.btn:hover { background: var(--sage-dark); border-color: var(--sage-dark); }
+.textlink { font-weight: 600; color: var(--sage-dark); text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px; }
+.textlink:hover { color: var(--terra-dark); }
+
+figure { margin: 0; }
+.visual { background: var(--paper); aspect-ratio: 4 / 3; max-width: 100%; overflow: hidden; position: relative; }
+.visual img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.1s cubic-bezier(.2,.8,.2,1); }
+.visual .ph { position: absolute; inset: 0; display: none; align-items: center; justify-content: center; text-align: center; padding: 24px; color: var(--sage); font-size: 0.85rem; background: repeating-linear-gradient(135deg, var(--paper) 0 14px, #eef0ea 14px 28px); }
+.visual.missing img { display: none; }
+.visual.missing .ph { display: flex; }
+figcaption { font-size: 0.8rem; color: var(--muted); margin-top: 10px; }
+
+/* Hero: obrázok predajne cez celú obrazovku, text dole vľavo */
+.hero { position: relative; height: calc(100vh - 69px - env(safe-area-inset-top, 0px)); height: calc(100svh - 69px - env(safe-area-inset-top, 0px)); min-height: 500px; color: var(--white); background: #1d211b; overflow: hidden; }
+.hero .visual { position: absolute; inset: 0; aspect-ratio: auto; background: #1d211b; }
+.hero .visual img { object-position: 57% 50%; }
+/* Tmavé pozadie pod textom: na počítači zľava, výklad vpravo ostáva svetlý */
+.hero .visual::after { content: ""; position: absolute; inset: 0; background:
+  linear-gradient(90deg, rgba(24,29,21,.82) 0%, rgba(24,29,21,.62) 34%, rgba(24,29,21,.15) 62%, rgba(24,29,21,0) 78%),
+  linear-gradient(0deg, rgba(24,29,21,.7) 0%, rgba(24,29,21,.25) 35%, rgba(24,29,21,0) 60%); }
+.hero h1, .hero .lead { text-shadow: 0 1px 12px rgba(0,0,0,.35); }
+@media (max-width: 860px) {
+  .hero .visual::after { background: linear-gradient(180deg, rgba(24,29,21,0) 0%, rgba(24,29,21,.15) 18%, rgba(24,29,21,.78) 38%, rgba(24,29,21,.86) 100%); }
+}
+.hero-content {
+  position: relative; z-index: 2; height: 100%;
+  display: flex; flex-direction: column; justify-content: flex-end; gap: 22px;
+  padding: 48px max(var(--gut), env(safe-area-inset-right, 0px)) clamp(120px, 24vh, 260px) max(var(--gut), env(safe-area-inset-left, 0px));
+}
+.hero-content > * { max-width: 760px; }
+.hero .lead { font-size: 1.1rem; color: rgba(255,255,255,.84); max-width: 56ch; }
+.hero .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 24px; margin-top: 6px; }
+.hero .textlink { color: var(--white); }
+.hero .textlink:hover { color: #f3c2b5; }
+.hero figcaption {
+  position: absolute; z-index: 2; right: max(var(--gut), env(safe-area-inset-right, 0px)); bottom: clamp(40px, 8vh, 80px);
+  max-width: 260px; margin: 0; text-align: right; font-size: 0.75rem; color: rgba(255,255,255,.7);
+  border-right: 2px solid var(--terra); padding-right: 12px;
+}
+.scroll-cue {
+  position: absolute; z-index: 2; left: 50%; bottom: 22px; translate: -50% 0;
+  display: grid; place-items: center; width: 44px; height: 44px; border: 1px solid rgba(255,255,255,.5); border-radius: 2px;
+  color: var(--white); text-decoration: none; font-size: 1.1rem; transition: background .2s, color .2s, transform .2s;
+}
+.scroll-cue:hover { background: var(--white); color: var(--ink); transform: translateY(3px); }
+@media (max-width: 860px) {
+  .hero-content { padding-bottom: 130px; }
+  .hero .actions { flex-direction: column; align-items: stretch; gap: 18px; }
+  .hero .actions .btn { text-align: center; }
+  .hero .actions .textlink { align-self: flex-start; }
+  .hero figcaption { left: max(20px, env(safe-area-inset-left, 0px)); right: auto; bottom: 30px; max-width: calc(100% - 100px); text-align: left; border-right: 0; border-left: 2px solid var(--terra); padding: 0 0 0 10px; }
+  .scroll-cue { left: auto; right: max(20px, env(safe-area-inset-right, 0px)); translate: none; }
+}
+
+section { padding-block: 88px; }
+@media (max-width: 860px) { section { padding-block: 56px; } }
+.section-head { display: grid; gap: 14px; margin-bottom: 44px; }
+
+/* Showroom: obrázok vedľa textu, polovica na polovicu cez celú šírku */
+.showroom { padding-block: 0; display: grid; grid-template-columns: 1fr 1fr; min-height: 640px; background: var(--paper); }
+.showroom .visual { aspect-ratio: auto; min-height: 460px; height: 100%; }
+.showroom .visual img { object-position: 60% 50%; }
+.showroom-copy { display: grid; gap: 26px; align-content: center; padding: 88px clamp(24px, 6vw, 96px); min-width: 0; }
+.place { border-left: 3px solid var(--terra); padding-left: 20px; display: grid; gap: 6px; align-self: start; }
+.place strong { font-size: 1.15rem; font-weight: 600; }
+.place .addr { color: var(--muted); }
+
+/* Mapový špendlík s logom: pomaly sa vznáša a dosadá, tieň a kruh pod ním dýchajú */
+.place-row { display: flex; align-items: center; gap: clamp(28px, 4vw, 56px); }
+.map-pin { flex: none; display: block; width: 64px; text-decoration: none; }
+.map-pin svg { display: block; width: 100%; height: auto; overflow: visible; }
+.pin-body path { fill: var(--sage); transition: fill .2s; }
+.map-pin:hover .pin-body path { fill: var(--sage-dark); }
+.pin-shadow { fill: rgba(42,47,39,.22); }
+.pin-ring { fill: none; stroke: var(--sage); stroke-width: 1.2; opacity: 0; }
+.pin-body, .pin-shadow, .pin-ring { transform-box: fill-box; transform-origin: 50% 100%; }
+.pin-shadow, .pin-ring { transform-origin: 50% 50%; }
+.motion .pin-body { animation: pinFloat 2.8s cubic-bezier(.45,0,.25,1) infinite; }
+.motion .pin-shadow { animation: pinShadow 2.8s cubic-bezier(.45,0,.25,1) infinite; }
+.motion .pin-ring { animation: pinRing 2.8s ease-out infinite; }
+@keyframes pinFloat {
+  0%, 100% { transform: translateY(0) scale(1, 1); }
+  8% { transform: translateY(0) scale(1.03, .97); }
+  45% { transform: translateY(-10px) scale(.99, 1.01); }
+  86% { transform: translateY(0) scale(1, 1); }
+  92% { transform: translateY(0) scale(1.025, .975); }
+}
+@keyframes pinShadow {
+  0%, 100%, 86% { transform: scale(1); opacity: 1; }
+  45% { transform: scale(.62); opacity: .45; }
+}
+@keyframes pinRing {
+  0%, 84% { transform: scale(.6); opacity: 0; }
+  88% { opacity: .55; }
+  100% { transform: scale(1.9); opacity: 0; }
+}
+@media (max-width: 860px) { .map-pin { width: 52px; } }
+@media (prefers-reduced-motion: reduce) { .pin-body, .pin-shadow, .pin-ring { animation: none !important; } }
+.showroom .body { display: grid; gap: 18px; min-width: 0; }
+.showroom .body .big { font-size: 1.3rem; font-weight: 500; line-height: 1.45; }
+.note { background: var(--white); padding: 20px 22px; display: grid; gap: 8px; margin-top: 10px; max-width: 62ch; }
+.note b { font-weight: 600; }
+@media (max-width: 860px) {
+  .showroom { grid-template-columns: 1fr; min-height: 0; }
+  .showroom .visual { min-height: 0; aspect-ratio: 4 / 3; }
+  .showroom-copy { padding: 48px 20px 56px; }
+}
+
+/* Značky */
+.brand-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--sage-line); }
+.brand-list li { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; padding: 22px 0; border-bottom: 1px solid var(--sage-line); }
+.brand-list .name { font-size: clamp(1.4rem, 2.6vw, 1.9rem); font-weight: 600; }
+.brand-list .who { font-size: 0.95rem; color: var(--muted); }
+.local { margin-top: 40px; display: grid; gap: 10px; }
+
+/* Projekty: každá karta je okno do iného webu, v jeho farbách a písme */
+.projects { background: var(--paper); }
+.projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; align-items: stretch; }
+.project {
+  --p-bg: #fff; --p-ink: var(--ink); --p-muted: var(--muted); --p-accent: var(--terra-dark); --p-link: var(--sage-dark);
+  --p-bar: #f3f4f1; --p-line: var(--sage-line); --p-font: var(--font);
+  display: flex; flex-direction: column; min-width: 0; overflow: hidden;
+  background: var(--p-bg); color: var(--p-ink); font-family: var(--p-font);
+  border: 1px solid var(--p-line); border-radius: 6px;
+}
+.project .frame { display: block; text-decoration: none; color: inherit; border-bottom: 1px solid var(--p-line); }
+.project .bar { display: flex; align-items: center; gap: 8px; padding: 9px 14px; background: var(--p-bar); font-size: 0.75rem; letter-spacing: 0.02em; color: var(--p-muted); }
+.project .bar img { width: 18px; height: 18px; object-fit: contain; border-radius: 3px; }
+.project .bar span { margin-left: auto; font-size: 0.85rem; transition: transform .2s; }
+.project .frame:hover .bar span { transform: translate(2px, -2px); }
+.project .shot { display: block; aspect-ratio: 16 / 10; overflow: hidden; background: var(--p-bar); }
+.project .shot img { width: 100%; height: 100%; object-fit: cover; object-position: top center; transition: transform .8s cubic-bezier(.2,.8,.2,1); }
+.project .frame:hover .shot img { transform: scale(1.045) translateY(-1.5%); }
+.project .pbody { display: grid; gap: 12px; align-content: start; padding: 24px 24px 28px; flex: 1; }
+.project .kind { font-size: 0.8rem; color: var(--p-accent); font-weight: 600; }
+.project h3 { color: var(--p-ink); }
+.project .sub { font-size: 0.9rem; color: var(--p-muted); margin-top: -6px; }
+.project p { color: var(--p-muted); }
+.project .links { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-top: 4px; }
+.project .textlink { color: var(--p-link); }
+.project .textlink:hover { color: var(--p-accent); }
+
+/* CBD Bratislava: biely e-shop, Muli, šalviová a terakotová z loga */
+.p-cbd { --p-bg: #ffffff; --p-ink: #52624f; --p-muted: #6d6d6d; --p-accent: #e05d42; --p-link: #52624f; --p-bar: #eef4ea; --p-line: #dedfe0; --p-font: "Mulish", "Muli", var(--font); }
+.p-cbd h3 { font-weight: 600; font-size: 1.45rem; }
+.p-cbd .kind { text-transform: uppercase; letter-spacing: 0.12em; font-size: 0.72rem; }
+
+/* Hemplex: tmavá modrá, Syne, nadpis s modrým prechodom */
+.p-hemplex { --p-bg: #060d18; --p-ink: #f1f5f9; --p-muted: #94a3b8; --p-accent: #38bdf8; --p-link: #38bdf8; --p-bar: #0b1626; --p-line: #1e293b; --p-font: "Syne", var(--font); }
+.p-hemplex h3 { font-weight: 800; font-size: 1.7rem; text-transform: uppercase; letter-spacing: 0.04em; background: linear-gradient(90deg, #2563eb, #bae6fd 50%, #2563eb); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.p-hemplex .kind { text-transform: uppercase; letter-spacing: 0.18em; font-size: 0.7rem; }
+.p-hemplex .kind::before { content: "// "; }
+.p-hemplex .sub { color: #4ade80; }
+.p-hemplex .textlink:hover { color: #bae6fd; }
+
+/* GAS: takmer čierna zelená, Inter 800, prechod zelená až žltá */
+.p-gas { --p-bg: #0a0f0d; --p-ink: #f8fafc; --p-muted: #94a3b8; --p-accent: #22c55e; --p-link: #3eda75; --p-bar: #111a15; --p-line: #1f2a23; --p-font: "Inter", var(--font); }
+.p-gas h3 { font-weight: 800; font-size: 1.7rem; text-transform: uppercase; letter-spacing: -0.01em; background: linear-gradient(90deg, #22c55e, #a3e635 55%, #fbbf24); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.p-gas .kind { text-transform: uppercase; letter-spacing: 0.14em; font-size: 0.72rem; }
+.p-gas .pbody > p:not(.sub) { border-left: 2px solid #fbbf24; padding-left: 12px; font-weight: 300; }
+.p-gas .textlink:hover { color: #fbbf24; }
+
+.after { margin-top: 48px; color: var(--muted); }
+@media (max-width: 960px) { .projects-grid { grid-template-columns: 1fr; max-width: 560px; } }
+
+/* Galéria: mozaika s rôznymi veľkosťami dlaždíc */
+.gallery .wrap { max-width: none; padding-left: max(var(--gut), env(safe-area-inset-left, 0px)); padding-right: max(var(--gut), env(safe-area-inset-right, 0px)); }
+.gallery-grid { display: grid; grid-template-columns: 1.6fr 1fr; grid-template-rows: auto minmax(300px, 380px) 300px; gap: 12px; }
+.gallery-grid .section-head { grid-column: 2; grid-row: 1; margin: 0; padding: 8px 0 28px 12px; align-self: end; }
+.gallery-grid figure { position: relative; min-width: 0; }
+.gallery-grid .visual { aspect-ratio: auto; height: 100%; }
+.gallery-grid figcaption {
+  position: absolute; z-index: 2; left: 0; bottom: 0; margin: 0; padding: 40px 18px 14px; width: 100%;
+  font-size: 0.85rem; font-weight: 600; color: var(--white);
+  background: linear-gradient(0deg, rgba(14,16,13,.6), rgba(14,16,13,0));
+}
+.tile-day { grid-column: 1; grid-row: 1 / 3; }
+.tile-day .visual img { object-position: 57% 50%; }
+.tile-night .visual img { object-position: 62% 50%; }
+.tile-night { grid-column: 2; grid-row: 2; }
+.tile-wide { grid-column: 1 / 3; grid-row: 3; }
+.tile-wide .visual img { object-position: center 50%; }
+.gallery-grid figure:hover .visual img { transform: scale(1.035); }
+.tile-wide .small { position: absolute; z-index: 2; left: 18px; bottom: 14px; margin: 0; max-width: calc(100% - 36px); color: var(--white); }
+.tile-wide .visual::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(14,16,13,.55), rgba(14,16,13,0) 50%); }
+.small { font-size: 0.85rem; color: var(--muted); margin-top: 20px; }
+@media (max-width: 860px) {
+  .gallery-grid { grid-template-columns: 1fr; grid-template-rows: none; }
+  .gallery-grid .section-head, .tile-day, .tile-night, .tile-wide { grid-column: 1; grid-row: auto; }
+  .gallery-grid .section-head { padding: 0 0 16px; }
+  .tile-day .visual, .tile-night .visual { aspect-ratio: 3 / 2; height: auto; }
+  .tile-wide .visual { aspect-ratio: 16 / 10; height: auto; }
+  .tile-wide .visual::after { content: none; }
+  .tile-wide .small { position: static; max-width: none; margin-top: 12px; color: var(--muted); }
+}
+
+/* Hodnotenia */
+.reviews { background: var(--sage); color: var(--white); }
+.reviews .label { color: #e4e8df; }
+.reviews .wrap { display: grid; grid-template-columns: 5fr 6fr; gap: 64px; align-items: start; }
+.reviews p { color: #eef1ea; }
+.reviews .textlink { color: var(--white); }
+.reviews .textlink:hover { color: #f6d9d1; }
+blockquote { margin: 0; display: grid; gap: 16px; }
+blockquote q { font-size: clamp(1.5rem, 3vw, 2.1rem); font-weight: 500; line-height: 1.3; quotes: "„" "“"; }
+blockquote footer { font-size: 0.9rem; color: #e4e8df; }
+@media (max-width: 860px) { .reviews .wrap { grid-template-columns: 1fr; gap: 32px; } }
+
+/* Vízia */
+.vision .wrap > .intro { display: grid; gap: 14px; margin-bottom: 28px; }
+details { border-top: 1px solid var(--sage-line); border-bottom: 1px solid var(--sage-line); }
+summary { cursor: pointer; list-style: none; padding: 20px 0; font-weight: 600; color: var(--sage-dark); display: flex; justify-content: space-between; gap: 16px; }
+summary::-webkit-details-marker { display: none; }
+summary::after { content: "+"; font-weight: 400; font-size: 1.4rem; line-height: 1; color: var(--terra); }
+details[open] summary::after { content: "−"; }
+.vision-body { display: grid; grid-template-columns: 6fr 5fr; gap: 48px; padding-block: 8px 40px; }
+.vision-body .text { display: grid; gap: 16px; min-width: 0; }
+.vision-body .meta { font-size: 0.9rem; color: var(--muted); }
+.vision .visual { aspect-ratio: 3 / 2; background: var(--white); }
+.vision .visual img { object-fit: contain; }
+.disclaimer { font-size: 0.9rem; color: var(--muted); border-left: 3px solid var(--sage-line); padding-left: 14px; }
+@media (max-width: 860px) { .vision-body { grid-template-columns: 1fr; gap: 28px; } }
+
+/* Päta */
+footer.site { background: var(--sage-dark); color: var(--white); padding-block: 72px 32px; }
+footer.site .top { display: grid; grid-template-columns: 7fr 4fr; gap: 48px; }
+footer.site h2 { font-weight: 500; }
+footer.site p { color: #dfe4da; }
+footer.site .wordmark { color: var(--white); margin-bottom: 20px; }
+.social { display: grid; gap: 10px; align-content: start; }
+.social a { font-weight: 600; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,.35); padding-bottom: 6px; width: fit-content; }
+.social a:hover { border-color: var(--terra); }
+.bottom { margin-top: 64px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,.18); display: flex; flex-wrap: wrap; gap: 12px 28px; font-size: 0.85rem; color: #cfd6c8; }
+.bottom a { color: #cfd6c8; text-decoration: none; }
+.bottom a:hover { color: var(--white); }
+.bottom .up { margin-left: auto; }
+@media (max-width: 860px) { footer.site .top { grid-template-columns: 1fr; } }
+
+/* Úvodná animácia: polovice loga sa stretnú, nabehne wordmark, biela plocha odíde hore */
+.intro-overlay { display: none; }
+.intro .intro-overlay {
+  position: fixed; inset: 0; z-index: 100; background: var(--white);
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px;
+  animation: introUp .7s var(--ease) 1.75s forwards; cursor: pointer;
+}
+.intro-mark { position: relative; width: min(46vw, 200px); aspect-ratio: 44 / 32; }
+.intro-mark img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
+.intro-mark .l { clip-path: inset(0 50% 0 0); animation: fromLeft .7s var(--ease) both; }
+.intro-mark .r { clip-path: inset(0 0 0 50%); animation: fromRight .7s var(--ease) both; }
+.intro-word { font-family: var(--font-logo); font-size: clamp(1.3rem, 4vw, 1.9rem); color: var(--sage); letter-spacing: 0.08em; white-space: nowrap; animation: wordIn .5s ease-out .65s both; }
+.intro-word b { font-weight: 700; }
+.intro-word span { font-weight: 300; }
+.intro-hub { font-family: var(--font-logo); font-size: clamp(0.85rem, 2.4vw, 1.1rem); font-weight: 600; color: var(--terra); letter-spacing: 0.42em; margin-top: -10px; padding-left: 0.42em; animation: hubIn .55s ease-out 1s both; }
+@keyframes hubIn { from { opacity: 0; letter-spacing: 0.9em; } to { opacity: 1; letter-spacing: 0.42em; } }
+@keyframes fromLeft { from { transform: translateX(-38vw); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes fromRight { from { transform: translateX(38vw); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes wordIn { from { opacity: 0; letter-spacing: 0.4em; } to { opacity: 1; letter-spacing: 0.08em; } }
+@keyframes introUp { to { transform: translateY(-100%); visibility: hidden; pointer-events: none; } }
+@keyframes heroIn { from { transform: scale(1.08); } to { transform: scale(1); } }
+.motion .hero .visual img { animation: heroIn 1.4s cubic-bezier(.2,.8,.2,1) both; }
+.intro .hero .visual img { animation-delay: 1.75s; }
+
+/* Odkrývanie pri rolovaní: len ak to JS zapne, inak je všetko viditeľné */
+.reveal { opacity: 0; transform: translateY(40px); transition: opacity .9s cubic-bezier(.2,.8,.2,1), transform .9s cubic-bezier(.2,.8,.2,1); }
+.reveal.in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .intro-overlay { display: none !important; }
+  .motion .hero .visual img { animation: none; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+}
+</style>
+</head>
+<body>
+<div class="intro-overlay" aria-hidden="true">
+  <div class="intro-mark"><img class="l" src="logo-mark.jpg" alt=""><img class="r" src="logo-mark.jpg" alt=""></div>
+  <div class="intro-word"><b>HEMP</b><span>BROTHERS</span></div>
+  <div class="intro-hub">HUB</div>
+</div>
+<a class="skip" href="#obsah">Preskočiť na obsah</a>
+
+<header class="site">
+  <div class="wrap">
+    <a class="wordmark" href="#" aria-label="Hemp Brothers HUB Bratislava, domov">
+      <span class="wm-icon"><img src="logo-mark.jpg" alt="" width="44" height="32"><small>HUB</small></span><b>HEMP</b><span>BROTHERS</span><span class="wm-hub">HUB</span>
+    </a>
+    <nav class="main" id="hlavne-menu" aria-label="Hlavná navigácia">
+      <a class="sec" href="#showroom">Showroom</a>
+      <a class="sec" href="#znacky">Značky</a>
+      <a class="sec" href="#projekty">Projekty</a>
+      <a class="sec" href="#galeria">Galéria</a>
+      <a class="sec" href="#hodnotenia">Hodnotenia</a>
+      <a class="shop" href="https://cbdbratislava.eu">CBD Marketplace</a>
+    </nav>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="hlavne-menu" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<main id="obsah">
+
+<figure class="hero">
+  <div class="visual">
+    <img src="img/galeria-den.jpg" alt="Vizualizácia výkladu Hemp Brothers HUB v OC Relaxx" loading="eager" fetchpriority="high" onerror="this.parentNode.classList.add('missing')">
+    <div class="ph">Vizualizácia priestoru</div>
+  </div>
+  <div class="hero-content">
+    <h1>Hemp Brothers otvárajú showroom v Bratislave</h1>
+    <p class="lead">Nová predajňa v OC Relaxx na Einsteinovej ulici. Nájdete v nej slovenské aj svetové konopné značky a ľudí, ktorí sa okolo nich stretávajú.</p>
+    <div class="actions">
+      <a class="btn" href="#showroom">Spoznajte náš HUB</a>
+      <a class="textlink" href="#projekty">Objavte naše projekty</a>
+    </div>
+  </div>
+  <figcaption>Vizualizácia pripravovaného priestoru, OC Relaxx, Einsteinova ul. 9, Bratislava</figcaption>
+  <a class="scroll-cue" href="#showroom" aria-label="Spoznajte náš HUB">↓</a>
+</figure>
+
+<section class="showroom" id="showroom">
+  <div class="visual">
+    <img src="img/galeria-vecer.jpg" alt="" loading="lazy" onerror="this.parentNode.classList.add('missing')">
+    <div class="ph">Vizualizácia priestoru</div>
+  </div>
+  <div class="showroom-copy">
+    <div class="place-row">
+      <div class="place">
+        <span class="label">Showroom a predajňa</span>
+        <strong>Hemp Brothers HUB Bratislava</strong>
+        <span class="addr">OC Relaxx, Einsteinova ul. 9<br>Bratislava, Slovensko</span>
+      </div>
+      <a class="map-pin" href="https://www.google.com/maps/search/?api=1&amp;query=OC+Relaxx+Einsteinova+9+Bratislava" target="_blank" rel="noopener" aria-label="Otvoriť na mape">
+        <svg viewBox="0 0 80 112" aria-hidden="true">
+          <defs><clipPath id="pin-head"><circle cx="40" cy="38" r="22"/></clipPath></defs>
+          <ellipse class="pin-ring" cx="40" cy="100" rx="16" ry="5"/>
+          <ellipse class="pin-shadow" cx="40" cy="100" rx="13" ry="3.5"/>
+          <g class="pin-body">
+            <path d="M40 4C21.2 4 6 19.2 6 38c0 24.5 29.3 52.6 32.2 55.3a2.6 2.6 0 0 0 3.6 0C44.7 90.6 74 62.5 74 38 74 19.2 58.8 4 40 4Z"/>
+            <circle cx="40" cy="38" r="24" fill="#fff"/>
+            <image href="logo-mark.jpg" x="19" y="22.5" width="42" height="31" preserveAspectRatio="xMidYMid meet" clip-path="url(#pin-head)"/>
+          </g>
+        </svg>
+      </a>
+    </div>
+    <div class="body">
+      <p class="big">Online nás už poznáte. Teraz pripravujeme miesto, kde sa stretneme osobne.</p>
+      <p>Hemp Brothers HUB bude predajňou a showroomom značiek zo Slovenska aj zo zahraničia. Pod jednou strechou tu budú konopné produkty, kultúra okolo nich a naše ďalšie projekty.</p>
+      <p>Chceme vám značky ukázať zblízka, aj s ich príbehmi a ľuďmi, ktorí za nimi stoja.</p>
+      <div class="note">
+        <b>HUB zatiaľ nie je otvorený.</b>
+        <span>Termín otvorenia a otváracie hodiny zverejníme, keď budú potvrdené.</span>
+        <a class="textlink" href="https://www.instagram.com/hempbrothers.club/">Prípravy sledujte na Instagrame</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="brands" id="znacky">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Čo u nás nájdete</h2>
+      <p>Známe zahraničné značky aj domáca scéna.</p>
+    </div>
+    <ul class="brand-list">
+      <li><span class="name">Dogg lbs</span><span class="who">značka Snoop Dogga</span></li>
+      <li><span class="name">TYSON 2.0</span><span class="who">značka Mika Tysona</span></li>
+      <li><span class="name">Wiz Khalifa</span><span class="who">konopná kultúra</span></li>
+    </ul>
+    <div class="local">
+      <h3>Aj slovenské značky</h3>
+      <p>Domáce značky budú v HUB-e mať svoje miesto. Konkrétny výber predstavíme spolu s otvorením showroomu.</p>
+    </div>
+  </div>
+</section>
+
+<section class="projects" id="projekty">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="label">Svet Hemp Brothers</span>
+      <h2>Naše ďalšie projekty</h2>
+      <p>Online marketplace, doručovanie a spoločný systém odmien. Každý projekt má vlastný web a svoju úlohu v rámci Hemp Brothers.</p>
+    </div>
+    <div class="projects-grid">
+      <article class="project p-cbd">
+        <a class="frame" href="https://cbdbratislava.eu" aria-label="Otvoriť cbdbratislava.eu">
+          <span class="bar"><img src="logo-mark.jpg" alt="">cbdbratislava.eu<span aria-hidden="true">↗</span></span>
+          <span class="shot"><img src="img/projekt-cbd.jpg" alt="" loading="lazy" width="1200" height="750"></span>
+        </a>
+        <div class="pbody">
+          <span class="kind">Značky a produkty</span>
+          <h3>CBD Bratislava</h3>
+          <p class="sub">Marketplace</p>
+          <p>Náš online marketplace pre konopné produkty. Spája značky, ich ponuku a zákazníkov zo Slovenska aj zo zahraničia.</p>
+          <div class="links"><a class="textlink" href="https://cbdbratislava.eu">cbdbratislava.eu</a></div>
+        </div>
+      </article>
+      <article class="project p-hemplex">
+        <a class="frame" href="https://hemplex.io" aria-label="Otvoriť hemplex.io">
+          <span class="bar"><img src="img/logo-hemplex.png" alt="">hemplex.io<span aria-hidden="true">↗</span></span>
+          <span class="shot"><img src="img/projekt-hemplex.jpg" alt="" loading="lazy" width="1200" height="750"></span>
+        </a>
+        <div class="pbody">
+          <span class="kind">Prepojenie projektov</span>
+          <h3>Hemplex</h3>
+          <p class="sub">HMPX, Solana</p>
+          <p>Tokenový projekt postavený na Solane. Rozvíja spoločný systém odmien a prepája marketplace, doručovanie a ďalšie projekty Hemp Brothers.</p>
+          <div class="links">
+            <a class="textlink" href="https://hemplex.io">hemplex.io</a>
+            <a class="textlink" href="hemplex-whitepaper.pdf">Whitepaper (PDF)</a>
+          </div>
+        </div>
+      </article>
+      <article class="project p-gas">
+        <a class="frame" href="https://gas.green" aria-label="Otvoriť gas.green">
+          <span class="bar"><img src="img/logo-gas.svg" alt="">gas.green<span aria-hidden="true">↗</span></span>
+          <span class="shot"><img src="img/projekt-gas.jpg" alt="" loading="lazy" width="1200" height="750"></span>
+        </a>
+        <div class="pbody">
+          <span class="kind">Mestská logistika</span>
+          <h3>GAS</h3>
+          <p class="sub">Delivery</p>
+          <p>Doručovacia infraštruktúra, ktorá prepája obchodníkov a kuriérov. Využíva kapacity, ktoré už v meste existujú, aby bolo doručovanie efektívnejšie.</p>
+          <div class="links"><a class="textlink" href="https://gas.green">gas.green</a></div>
+        </div>
+      </article>
+    </div>
+    <p class="after">HUB je náš pripravovaný kamenný priestor. Online ponuku a informácie o projektoch nájdete na weboch vyššie.</p>
+  </div>
+</section>
+
+<section class="gallery" id="galeria">
+  <div class="wrap">
+    <div class="gallery-grid">
+      <div class="section-head">
+        <span class="label">Prvý pohľad</span>
+        <h2>Ako bude HUB vyzerať</h2>
+        <p>Pripravovaný výklad v budove OC Relaxx cez deň a po zotmení.</p>
+      </div>
+      <figure class="tile-day">
+        <div class="visual">
+          <img src="img/galeria-den.jpg" alt="Výklad HUB-u za denného svetla" loading="lazy" onerror="this.parentNode.classList.add('missing')">
+          <div class="ph">Výklad za denného svetla</div>
+        </div>
+        <figcaption>Výklad za denného svetla</figcaption>
+      </figure>
+      <figure class="tile-night">
+        <div class="visual">
+          <img src="img/galeria-vecer.jpg" alt="HUB večer" loading="lazy" onerror="this.parentNode.classList.add('missing')">
+          <div class="ph">Večerná atmosféra HUB-u</div>
+        </div>
+        <figcaption>Večerná atmosféra HUB-u</figcaption>
+      </figure>
+      <figure class="tile-wide">
+        <div class="visual">
+          <img src="img/galeria-den.jpg" alt="" loading="lazy" onerror="this.parentNode.classList.add('missing')">
+          <div class="ph"></div>
+        </div>
+        <p class="small">Ide o vizualizáciu. Reálne fotografie pridáme čoskoro.</p>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="reviews" id="hodnotenia">
+  <div class="wrap">
+    <div class="section-head" style="margin-bottom:0">
+      <span class="label">Skúsenosti zákazníkov</span>
+      <h2>Čo hovoria zákazníci nášho e-shopu</h2>
+      <p>Hodnotenia marketplace CBD Bratislava na Heureke. Týkajú sa online nákupov, nie pripravovaného HUB-u.</p>
+      <a class="textlink" href="https://obchody.heureka.sk/cbdbratislava-eu/recenze/">Všetky hodnotenia na Heureke</a>
+    </div>
+    <div>
+      <blockquote>
+        <q>Zákazník je dôležitý, nie je len číslo.</q>
+        <footer>Viktor, overený nákup na Heureke, 7. 8. 2026</footer>
+      </blockquote>
+      <p class="small" style="color:#dfe4da; margin-top:32px">Výňatky z verejne dostupných recenzií. Aktuálne hodnotenia nájdete priamo na Heureke.</p>
+    </div>
+  </div>
+</section>
+
+<section class="vision">
+  <div class="wrap">
+    <div class="intro">
+      <span class="label">Náhľad do budúcnosti</span>
+      <h2>Kam smerujeme</h2>
+      <p>Okrem showroomu a online projektov pripravujeme aj dlhodobejší smer. Tu je krátky náhľad na jednu z vízií, ktorá zatiaľ nie je v prevádzke.</p>
+    </div>
+    <details>
+      <summary>Biomedical Clinic &amp; Wellness, dlhodobá vízia (fáza 4)</summary>
+      <div class="vision-body">
+        <div class="text">
+          <p class="meta">Bratislava, dermatológia a wellness</p>
+          <p>Pripravovaný projekt kliniky a wellness v Bratislave. Realizácia najskôr v roku 2028. Podrobnosti o koncepte, štúdii a plánovanom modeli nájdete v prehľade projektu.</p>
+          <p>Počet ľudí žijúcich so psoriázou celosvetovo rastie. Podľa analýzy údajov Global Burden of Disease sa zvýšil z približne 23 miliónov v roku 1990 na 43 miliónov v roku 2021, teda o 86 %. Ide o nárast celkového počtu pacientov, ku ktorému prispieva aj rast a starnutie svetovej populácie. Aj preto vidíme zmysel v budovaní dostupnej dlhodobej starostlivosti o ľudí s chronickými zápalovými ochoreniami kože.</p>
+          <p class="disclaimer">Klinika zatiaľ nie je v prevádzke ani neponúka zdravotnú starostlivosť. Realizácia bude podliehať regulačným povoleniam a pravidlám EÚ.</p>
+          <div class="actions" style="display:flex; flex-wrap:wrap; gap:16px 24px; align-items:center; margin-top:6px">
+            <a class="btn" href="https://hempbrothers.store/klinika">Prehľad projektu a zdroje</a>
+            <a class="textlink" href="hemplex-whitepaper.pdf">Prečítať whitepaper (PDF)</a>
+          </div>
+        </div>
+        <figure>
+          <div class="visual">
+            <img src="img/klinika-vizualizacia.png" alt="Konceptová vizualizácia kliniky" loading="lazy" onerror="this.parentNode.classList.add('missing')">
+            <div class="ph">Vizualizácia kliniky</div>
+          </div>
+          <figcaption>Samostatná dlhodobá vízia. Konceptová vizualizácia, realizácia najskôr 2028.</figcaption>
+        </figure>
+      </div>
+    </details>
+  </div>
+</section>
+
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="top">
+      <div>
+        <a class="wordmark" href="#"><b>HEMP</b><span>BROTHERS</span><span class="wm-hub">HUB</span></a>
+        <h2>Začali sme online. Teraz sa uvidíme aj osobne.</h2>
+        <p style="margin-top:16px">OC Relaxx, Einsteinova ul. 9, Bratislava. Otvorenie pripravujeme.</p>
+      </div>
+      <div class="social">
+        <span class="label" style="color:#cfd6c8">Zostaňme v spojení</span>
+        <a href="https://www.instagram.com/hempbrothers.club/">Instagram</a>
+        <a href="https://www.facebook.com/byhempbrothers/">Facebook</a>
+      </div>
+    </div>
+    <div class="bottom">
+      <span>© 2026 Hemp Brothers, Bratislava</span>
+      <a href="#">Nastavenia cookies</a>
+      <a class="up" href="#">Späť hore</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var d = document.documentElement;
+
+  // Mobilné menu: otvorí sa tlačidlom, zavrie odkazom, Escape alebo ťuknutím mimo
+  var toggle = document.querySelector(".menu-toggle");
+  var header = document.querySelector("header.site");
+  function setMenu(open) {
+    d.classList.toggle("menu-open", open);
+    toggle.setAttribute("aria-expanded", open ? "true" : "false");
+  }
+  toggle.addEventListener("click", function () { setMenu(!d.classList.contains("menu-open")); });
+  document.querySelectorAll("nav.main a").forEach(function (a) { a.addEventListener("click", function () { setMenu(false); }); });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape" && d.classList.contains("menu-open")) { setMenu(false); toggle.focus(); } });
+  document.addEventListener("click", function (e) { if (d.classList.contains("menu-open") && !header.contains(e.target)) setMenu(false); });
+  window.matchMedia("(min-width: 861px)").addEventListener("change", function (m) { if (m.matches) setMenu(false); });
+
+  // Intro: pri každom načítaní, klik alebo kláves ho preskočí
+  if (d.classList.contains("intro")) {
+    window.scrollTo(0, 0);
+    var overlay = document.querySelector(".intro-overlay");
+    var finished = false;
+    var done = function () {
+      if (finished) return;
+      finished = true;
+      d.classList.remove("intro");
+      var target = location.hash && document.getElementById(location.hash.slice(1));
+      if (target) target.scrollIntoView();
+      window.removeEventListener("keydown", done);
+    };
+    overlay.addEventListener("animationend", function (e) { if (e.animationName === "introUp") done(); });
+    overlay.addEventListener("click", done);
+    window.addEventListener("keydown", done);
+    setTimeout(done, 3500);
+  }
+
+  // Odkrývanie pri rolovaní
+  if (!d.classList.contains("motion") || !("IntersectionObserver" in window)) return;
+  var targets = document.querySelectorAll(".showroom .visual, .showroom-copy > *, .section-head, .brand-list li, .local, .project, .gallery-grid figure, .reviews blockquote, .vision .intro");
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry, i) {
+      if (!entry.isIntersecting) return;
+      io.unobserve(entry.target);
+      entry.target.style.transitionDelay = (i * 70) + "ms";
+      entry.target.classList.add("in");
+    });
+  }, { threshold: 0.14, rootMargin: "0px 0px -6% 0px" });
+  targets.forEach(function (t) {
+    if (t.getBoundingClientRect().top < window.innerHeight) return;
+    t.classList.add("reveal");
+    io.observe(t);
+  });
+})();
+</script>
+</body>
+</html>
