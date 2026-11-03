@@ -247,10 +247,15 @@ section { padding-block: 88px; }
 }
 
 /* Značky */
-.brand-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--sage-line); }
-.brand-list li { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; padding: 22px 0; border-bottom: 1px solid var(--sage-line); }
-.brand-list .name { font-size: clamp(1.4rem, 2.6vw, 1.9rem); font-weight: 600; }
-.brand-list .who { font-size: 0.95rem; color: var(--muted); }
+.brand-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.brand-list li { display: grid; grid-template-rows: 1fr auto; gap: 14px; background: var(--white); border: 1px solid var(--sage-line); border-radius: 2px; padding: 28px 24px 20px; min-height: 220px; min-width: 0; }
+.brand-list .logo { display: grid; place-items: center; min-height: 120px; }
+.brand-list .logo img { max-width: 78%; max-height: 110px; width: auto; height: auto; object-fit: contain; }
+.brand-list .logo .fallback { display: none; font-size: clamp(1.4rem, 2.6vw, 1.9rem); font-weight: 600; text-align: center; }
+.brand-list .logo.missing img { display: none; }
+.brand-list .logo.missing .fallback { display: block; }
+.brand-list .name { font-size: 0.8rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); text-align: center; border-top: 1px solid var(--sage-line); padding-top: 14px; }
+@media (max-width: 700px) { .brand-list { grid-template-columns: 1fr; } .brand-list li { min-height: 0; } }
 .local { margin-top: 40px; display: grid; gap: 10px; }
 
 /* Projekty: každá karta je okno do iného webu, v jeho farbách a písme */
@@ -498,9 +503,18 @@ footer.site .wordmark { color: var(--white); margin-bottom: 20px; }
       <p>Známe zahraničné značky aj domáca scéna.</p>
     </div>
     <ul class="brand-list">
-      <li><span class="name">Dogg lbs</span><span class="who">značka Snoop Dogga</span></li>
-      <li><span class="name">TYSON 2.0</span><span class="who">značka Mika Tysona</span></li>
-      <li><span class="name">Wiz Khalifa</span><span class="who">konopná kultúra</span></li>
+      <li>
+        <div class="logo"><img src="img/znacka-dogglabs.png" alt="Logo Dogg Labs" loading="lazy" onerror="this.parentNode.classList.add('missing')"><span class="fallback">Dogg Labs</span></div>
+        <span class="name">Dogg Labs</span>
+      </li>
+      <li>
+        <div class="logo"><img src="img/znacka-tyson.png" alt="Logo TYSON 2.0" loading="lazy" onerror="this.parentNode.classList.add('missing')"><span class="fallback">TYSON 2.0</span></div>
+        <span class="name">TYSON 2.0</span>
+      </li>
+      <li>
+        <div class="logo"><img src="img/znacka-wiz.png" alt="Logo Wiz Khalifa" loading="lazy" onerror="this.parentNode.classList.add('missing')"><span class="fallback">Wiz Khalifa</span></div>
+        <span class="name">Wiz Khalifa</span>
+      </li>
     </ul>
     <div class="local">
       <h3>Aj slovenské značky</h3>
