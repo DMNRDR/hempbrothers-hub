@@ -178,11 +178,6 @@ figcaption { font-size: 0.8rem; color: var(--muted); margin-top: 10px; }
 .hero .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 24px; margin-top: 6px; }
 .hero .textlink { color: var(--white); }
 .hero .textlink:hover { color: #f3c2b5; }
-.hero figcaption {
-  position: absolute; z-index: 2; right: max(var(--gut), env(safe-area-inset-right, 0px)); bottom: clamp(40px, 8vh, 80px);
-  max-width: 260px; margin: 0; text-align: right; font-size: 0.75rem; color: rgba(255,255,255,.7);
-  border-right: 2px solid var(--terra); padding-right: 12px;
-}
 .scroll-cue {
   position: absolute; z-index: 2; left: 50%; bottom: 22px; translate: -50% 0;
   display: grid; place-items: center; width: 44px; height: 44px; border: 1px solid rgba(255,255,255,.5); border-radius: 2px;
@@ -194,7 +189,6 @@ figcaption { font-size: 0.8rem; color: var(--muted); margin-top: 10px; }
   .hero .actions { flex-direction: column; align-items: stretch; gap: 18px; }
   .hero .actions .btn { text-align: center; }
   .hero .actions .textlink { align-self: flex-start; }
-  .hero figcaption { left: max(20px, env(safe-area-inset-left, 0px)); right: auto; bottom: 30px; max-width: calc(100% - 100px); text-align: left; border-right: 0; border-left: 2px solid var(--terra); padding: 0 0 0 10px; }
   .scroll-cue { left: auto; right: max(20px, env(safe-area-inset-right, 0px)); translate: none; }
 }
 
@@ -456,7 +450,6 @@ footer.site .wordmark { color: var(--white); margin-bottom: 20px; }
       <a class="textlink" href="#projekty">Objavte naše projekty</a>
     </div>
   </div>
-  <figcaption>Vizualizácia pripravovaného priestoru, OC Relaxx, Einsteinova ul. 9, Bratislava</figcaption>
   <a class="scroll-cue" href="#showroom" aria-label="Spoznajte náš HUB">↓</a>
 </figure>
 
@@ -524,19 +517,6 @@ footer.site .wordmark { color: var(--white); margin-bottom: 20px; }
       <p>Online marketplace, doručovanie a spoločný systém odmien. Každý projekt má vlastný web a svoju úlohu v rámci Hemp Brothers.</p>
     </div>
     <div class="projects-grid">
-      <article class="project p-cbd">
-        <a class="frame" href="https://cbdbratislava.eu" aria-label="Otvoriť cbdbratislava.eu">
-          <span class="bar"><img src="logo-mark.jpg" alt="">cbdbratislava.eu<span aria-hidden="true">↗</span></span>
-          <span class="shot"><img src="img/projekt-cbd.jpg" alt="" loading="lazy" width="1200" height="750"></span>
-        </a>
-        <div class="pbody">
-          <span class="kind">Značky a produkty</span>
-          <h3>CBD Bratislava</h3>
-          <p class="sub">Marketplace</p>
-          <p>Náš online marketplace pre konopné produkty. Spája značky, ich ponuku a zákazníkov zo Slovenska aj zo zahraničia.</p>
-          <div class="links"><a class="textlink" href="https://cbdbratislava.eu">cbdbratislava.eu</a></div>
-        </div>
-      </article>
       <article class="project p-hemplex">
         <a class="frame" href="https://hemplex.io" aria-label="Otvoriť hemplex.io">
           <span class="bar"><img src="img/logo-hemplex.png" alt="">hemplex.io<span aria-hidden="true">↗</span></span>
@@ -551,6 +531,19 @@ footer.site .wordmark { color: var(--white); margin-bottom: 20px; }
             <a class="textlink" href="https://hemplex.io">hemplex.io</a>
             <a class="textlink" href="hemplex-whitepaper.pdf">Whitepaper (PDF)</a>
           </div>
+        </div>
+      </article>
+      <article class="project p-cbd">
+        <a class="frame" href="https://cbdbratislava.eu" aria-label="Otvoriť cbdbratislava.eu">
+          <span class="bar"><img src="logo-mark.jpg" alt="">cbdbratislava.eu<span aria-hidden="true">↗</span></span>
+          <span class="shot"><img src="img/projekt-cbd.jpg" alt="" loading="lazy" width="1200" height="750"></span>
+        </a>
+        <div class="pbody">
+          <span class="kind">Značky a produkty</span>
+          <h3>CBD Bratislava</h3>
+          <p class="sub">Marketplace</p>
+          <p>Náš online marketplace pre konopné produkty. Spája značky, ich ponuku a zákazníkov zo Slovenska aj zo zahraničia.</p>
+          <div class="links"><a class="textlink" href="https://cbdbratislava.eu">cbdbratislava.eu</a></div>
         </div>
       </article>
       <article class="project p-gas">
