@@ -349,6 +349,14 @@ section { padding-block: 88px; }
 blockquote { margin: 0; display: grid; gap: 16px; }
 blockquote q { font-size: clamp(1.5rem, 3vw, 2.1rem); font-weight: 500; line-height: 1.3; quotes: "„" "“"; }
 blockquote footer { font-size: 0.9rem; color: #e4e8df; }
+.rev-stats { display: flex; flex-wrap: wrap; gap: 28px; margin: 28px 0 0; padding: 0; list-style: none; }
+.rev-stats li { display: grid; gap: 2px; }
+.rev-stats strong { font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 600; line-height: 1; }
+.rev-stats span { font-size: 0.8rem; color: #e4e8df; }
+.rev-list { list-style: none; margin: 36px 0 0; padding: 0; display: grid; gap: 22px; }
+.rev-list li { border-top: 1px solid rgba(255,255,255,.25); padding-top: 18px; display: grid; gap: 8px; }
+.rev-list q { font-size: 1.02rem; line-height: 1.5; quotes: "„" "“"; }
+.rev-list .who { font-size: 0.85rem; color: #e4e8df; }
 @media (max-width: 860px) { .reviews .wrap { grid-template-columns: 1fr; gap: 32px; } }
 
 /* Vízia */
@@ -621,10 +629,20 @@ footer.site .wordmark { color: var(--white); margin-bottom: 20px; }
     </div>
     <div>
       <blockquote>
-        <q>Zákazník je dôležitý, nie je len číslo.</q>
-        <footer>Viktor, overený nákup na Heureke, 7. 8. 2026</footer>
+        <q>Keď chcete kúpiť niečo kvalitné tak jediné tu. Odporúčam všetkým ktorí hľadajú To čo inde už dávno nieje</q>
+        <footer>Denis, overený nákup na Heureke, 16. 5. 2026</footer>
       </blockquote>
-      <p class="small" style="color:#dfe4da; margin-top:32px">Výňatky z verejne dostupných recenzií. Aktuálne hodnotenia nájdete priamo na Heureke.</p>
+      <ul class="rev-stats">
+        <li><strong>4,4</strong><span>celková spokojnosť</span></li>
+        <li><strong>84 %</strong><span>zákazníkov odporúča (90 dní)</span></li>
+        <li><strong>77</strong><span>recenzií na Heureke</span></li>
+      </ul>
+      <ul class="rev-list">
+        <li><q lang="en">I have been buying from this shop for more than 3 years and I have never been unhappy with the service or products. … They are the only vendor who provides real tests for the products, and I feel safe when buying from them.</q><span class="who">Treyz, overený nákup, 17. 6. 2025</span></li>
+        <li><q>Perfektny vyber, Bohaty sortiment, Osobne vyzdvihnutie veľakrát v ten isty den, Fajn ceny, Super priateľskí zamestnanci</q><span class="who">Dominik, overený nákup, 9. 3. 2025</span></li>
+        <li><q lang="en">Great quality, discreet shipping, everything was perfect. Best in the industry by far. Keep it up!</q><span class="who">Overený nákup, 28. 5. 2025</span></li>
+      </ul>
+      <p class="small" style="color:#dfe4da; margin-top:32px">Vybrané recenzie overených nákupov, citované v pôvodnom znení (skrátené sú označené „…“). Čísla podľa Heureky k 3. 11. 2026. Všetky aktuálne hodnotenia, aj kritické, nájdete priamo na Heureke.</p>
     </div>
   </div>
 </section>
